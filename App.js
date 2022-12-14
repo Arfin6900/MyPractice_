@@ -9,33 +9,22 @@
 import React, { useEffect, useState } from 'react';
 // import type {Node} from 'react';
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
   StyleSheet,
-  Text,
-  useColorScheme,
   View,
-  Pressable,
-  TouchableOpacity,
   Keyboard,
 } from 'react-native';
 import screen from './src/constants/constants';
-import {
-  Colors,
-  DebugInstructions,
-  Header,
-  LearnMoreLinks,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
-import Icon from 'react-native-vector-icons/Ionicons';
-  import {Appbar,  TextInput} from 'react-native-paper';
-import LinearGradient from 'react-native-linear-gradient';
 import Login from './src/screens/Login_signup/Login';
+import Ludo_UI from './src/screens/Dashboard/Mywork/Ludo/Ludo_UI';
+import { createStackNavigator } from '@react-navigation/stack';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Home_bottom from './src/screens/Navigations/bottom_Navigation/Bottom_main';
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
 // import { StyleSheet, Text, View } from 'react-native'
+const Stack=createNativeStackNavigator()
 
 const App = () => {
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
@@ -58,9 +47,13 @@ const App = () => {
     };
   }, []);
   return (
-    <View style={{backgroundColor: 'white', flex: 1}}>
-    <Login />
-    </View>
+<NavigationContainer >
+  <Stack.Navigator screenOptions={{headerShown:false}}>
+  <Stack.Screen name='Home_bottom' component={Home_bottom}/>
+  <Stack.Screen name='Login' component={Login}/>
+
+      </Stack.Navigator>
+</NavigationContainer>
   );
 };
 

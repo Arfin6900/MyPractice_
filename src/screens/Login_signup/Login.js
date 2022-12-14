@@ -25,50 +25,15 @@ import LinearGradient from 'react-native-linear-gradient';
 import CheckBox from '@react-native-community/checkbox';
 import { launchImageLibrary } from 'react-native-image-picker';
 import { check, PERMISSIONS } from 'react-native-permissions';
+import { Image_Picker } from '../../components/Image_picker';
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
 // import { StyleSheet, Text, View } from 'react-native'
 
-const Login = () => {
+const Login = ({...props}) => {
   const [image, setImage] = React.useState({value:null,height:0});
-  const pickImage = async auction => {
-    if (Platform.OS == 'ios') {
-      const IosPermstatus = await check(PERMISSIONS.IOS.PHOTO_LIBRARY);
-      console.log('IosPermstatus', IosPermstatus);
-    }
-    if (Platform.OS == 'android') {
-      const androidPermstatus = await check(
-        PERMISSIONS.ANDROID.READ_EXTERNAL_STORAGE,
-      );
-      console.log('androidPermstatus', androidPermstatus);
-    }
 
-    launchImageLibrary(
-      {
-        mediaType: "photo",
-        selectionLimit: 5,
-      },
-      async response => {
-        try {
-          const files = response.assets.map(v => ({
-            uri: v.uri,
-            name: `${Date.now()}.${v.type.split('/')[1]}`,
-            type: v.type,
-            height: v.height,
-            width: v.width,
-            size: v.fileSize,
-            url: v.uri,
-          }));
-          console.log(files);
-          console.log('image path==================', files[0].url);
-          setImage({value:files,height:0});
-        } catch (error) {
-          console.log('error1', error);
-        }
-      },
-    );
-  };
   const [isKeyboardVisible, setKeyboardVisible] = useState(false);
   useEffect(() => {
     const keyboardDidShowListener = Keyboard.addListener(
@@ -222,22 +187,7 @@ const Login = () => {
                   </Text>
                   {issignup.open ? (
                     <View style={{alignItems: 'center'}}>
-                      <TouchableOpacity
-                      onPress={pickImage}
-                      onLongPress={()=>{setImage({value:image.value,height:100})}}
-                      >
-                        <Image
-                          source={image.value!==null?image.value:images.add_profile}
-                          resizeMode="center"
-                          style={{
-                            height:screen.width / 8,
-                            width:screen.width / 7.5,
-                            top: 5,
-                            borderRadius: 10,
-                          }}
-                        />
-                      </TouchableOpacity>
-
+                    <Image_Picker setImage={setImage} image={image}/>
                       <Text
                         style={{
                           color: 'white',
@@ -424,7 +374,8 @@ const Login = () => {
                     width: '23%',
                     justifyContent: 'center',
                     alignItems: 'center',
-                  }}>
+                  }}
+                  onPress={!issignup.open?()=>{props.navigation.navigate("Home_bottom")}:null}>
                   <LinearGradient
                     colors={['purple', 'black', 'black']}
                     style={{
