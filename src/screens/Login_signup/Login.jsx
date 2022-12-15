@@ -30,7 +30,7 @@ import { check, PERMISSIONS } from 'react-native-permissions';
  * LTI update could not be added via codemod */
 // import { StyleSheet, Text, View } from 'react-native'
 
-const Login = () => {
+const Login = ({navigation}) => {
   const [image, setImage] = React.useState({value:null,height:0});
   const pickImage = async auction => {
     if (Platform.OS == 'ios') {
@@ -47,7 +47,7 @@ const Login = () => {
     launchImageLibrary(
       {
         mediaType: "photo",
-        selectionLimit: 5,
+        selectionLimit: 2,
       },
       async response => {
         try {
@@ -419,6 +419,7 @@ const Login = () => {
                   </LinearGradient>
                 </TouchableOpacity>
                 <TouchableOpacity
+                onPress={!issignup.open?()=>{navigation.navigate("Tab_Bar");}:()=>{alert("Signup")}}
                   style={{
                     height: '40%',
                     width: '23%',

@@ -1,3 +1,4 @@
+import 'react-native-gesture-handler';
 /**
  * Sample React Native App
  * https://github.com/facebook/react-native
@@ -32,6 +33,9 @@ import Icon from 'react-native-vector-icons/Ionicons';
   import {Appbar,  TextInput} from 'react-native-paper';
 import LinearGradient from 'react-native-linear-gradient';
 import Login from './src/screens/Login_signup/Login';
+import { NavigationContainer } from '@react-navigation/native';
+import Tab_bar from './src/screens/Navigations/costom_bottom/costom_Bottom_Nav';
+import Ludo from './src/screens/Dashboard/my_works/Ludo';
 
 /* $FlowFixMe[missing-local-annot] The type annotation(s) required by Flow's
  * LTI update could not be added via codemod */
@@ -59,7 +63,7 @@ const App = () => {
   }, []);
   return (
     <View style={{backgroundColor: 'white', flex: 1}}>
-    <Login />
+<Ludo/>
     </View>
   );
 };
