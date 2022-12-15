@@ -19,6 +19,7 @@ import screen, {assets} from '../../../../constants/constants';
 export default function Ludo_UI() {
   const [modal, setmodal] = React.useState({open: false, Main_Id: 0});
   const [num, setnum] = React.useState(0);
+  console.log("num",num)
   const color =
     modal?.Main_Id == 0
       ? 'yellow'
@@ -911,7 +912,7 @@ export default function Ludo_UI() {
           }}>
           {/* <Icon /> */}
           <Image
-            source={assets[num - 1]}
+            source={assets[num ==0?num:num - 1]}
             style={{height: '100%', width: '100%'}}
           />
         </Pressable>

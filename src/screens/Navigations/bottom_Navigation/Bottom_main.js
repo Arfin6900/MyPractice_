@@ -1,6 +1,7 @@
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Icon from 'react-native-vector-icons/Ionicons'
+import Iconm from 'react-native-vector-icons/MaterialCommunityIcons'
 import { createDrawerNavigator } from '@react-navigation/drawer'
 import Ludo_UI from '../../Dashboard/Mywork/Ludo/Ludo_UI'
 import Login from '../../Login_signup/Login'
@@ -18,30 +19,53 @@ function Home_bottom() {
     <Tab.Navigator
    screenOptions={
     {
-      tabBarActiveTintColor: "red",
+      tabBarActiveTintColor: "white",
       tabBarShowLabel:false,
       tabBarHideOnKeyboard:true,
     }
    }
    >
-      <Tab.Screen
-        name="Map"
+         <Tab.Screen
+        name="Home"
+        
         component={Drawer_Stack_navigator}
         options={{
+          title:'Home',
+                  headerTintColor:"black",
+                  tabBarStyle:{height:screen.height/14.3,backgroundColor:"#841592",},
+          tabBarItemStyle:{
+                  height:screen.width/7,
+                  backgroundColor:"#841592"
+                  
+          },
+          
           headerShown: false,
-          tabBarIcon: ({ focused, color, size }) => {
-            return <Icon name={'map-outline'} size={25} color={"red"} />
-          }
+          tabBarIcon: ({focused, color, size}) => {
+           
+            return  <Iconm name={color=="white"?'dice-multiple':'dice-multiple-outline'} size={color=="white"?screen.width/6.8:screen.width/13} color={"white"} />;
+          },
         }}
       />
-      <Tab.Screen
-        name="Login"
-        component={Login_Stack_navigator}
+       <Tab.Screen
+        name="Home2"
+        
+        component={Drawer_Stack_navigator}
         options={{
+          title:'Home',
+                  headerTintColor:"black",
+                  tabBarStyle:{height:screen.height/13.3,backgroundColor:"#841592",},
+          tabBarItemStyle:{
+                  height:screen.width/7,
+                  backgroundColor: "#841592",
+                  justifyContent:"center"
+                  
+          },
+          
           headerShown: false,
-          tabBarIcon: ({ focused, color, size }) => {
-            return <Icon name={'log-in-outline'} size={25} color={color} />
-          }
+          tabBarIcon: ({focused, color, size}) => {
+           
+            return  <Iconm name={color=="white"?'ethereum':'ethereum'} size={color=="white"?screen.width/6.8:screen.width/13} color={"white"} />;
+          },
         }}
       />
         <Tab.Screen
@@ -51,17 +75,17 @@ function Home_bottom() {
         options={{
           title:'Home',
                   headerTintColor:"black",
-                  tabBarStyle:{height:screen.height/14.3,backgroundColor:"#1884C8",},
+                  tabBarStyle:{height:screen.height/14.3,backgroundColor:"#841592",},
           tabBarItemStyle:{
                   height:screen.width/7,
-                  backgroundColor:"#1884C8"
+                  backgroundColor:"#841592"
                   
           },
           
           headerShown: false,
           tabBarIcon: ({focused, color, size}) => {
            
-            return  <Icon name={color=="red"?'home-circle-outline':'home'} size={color=="red"?screen.width/6.8:screen.width/13} color={"white"} />;
+            return  <Iconm name={color=="white"?'face-man-outline':'face-man'} size={color=="white"?screen.width/6.8:screen.width/13} color={"white"} />;
           },
         }}
       />
