@@ -6,6 +6,7 @@ import Ludo_UI from '../../Dashboard/Mywork/Ludo/Ludo_UI'
 import Login from '../../Login_signup/Login'
 import { createStackNavigator } from '@react-navigation/stack'
 import Dashboard from '../../Dashboard/Dashboard'
+import screen from '../../../constants/constants'
 
 
 
@@ -14,7 +15,15 @@ const Tab = createBottomTabNavigator()
 
 function Home_bottom() {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+   screenOptions={
+    {
+      tabBarActiveTintColor: "red",
+      tabBarShowLabel:false,
+      tabBarHideOnKeyboard:true,
+    }
+   }
+   >
       <Tab.Screen
         name="Map"
         component={Drawer_Stack_navigator}
@@ -33,6 +42,27 @@ function Home_bottom() {
           tabBarIcon: ({ focused, color, size }) => {
             return <Icon name={'log-in-outline'} size={25} color={color} />
           }
+        }}
+      />
+        <Tab.Screen
+        name="Home_2"
+        
+        component={Drawer_Stack_navigator}
+        options={{
+          title:'Home',
+                  headerTintColor:"black",
+                  tabBarStyle:{height:screen.height/14.3,backgroundColor:"#1884C8",},
+          tabBarItemStyle:{
+                  height:screen.width/7,
+                  backgroundColor:"#1884C8"
+                  
+          },
+          
+          headerShown: false,
+          tabBarIcon: ({focused, color, size}) => {
+           
+            return  <Icon name={color=="red"?'home-circle-outline':'home'} size={color=="red"?screen.width/6.8:screen.width/13} color={"white"} />;
+          },
         }}
       />
     </Tab.Navigator>
